@@ -8,6 +8,9 @@ class AdminController {
 
   public getAllClients = async (req: Request, res: Response): Promise<Response> => {
     const result = await this.adminService.getAllClients();
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'No clients found' });
+    }
     return res.status(200).json(result);
   };
 }
