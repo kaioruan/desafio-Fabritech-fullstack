@@ -21,6 +21,7 @@ class App {
     this.app.post('/register', userController.Register);
     this.app.post('/validate', userController.validate);
     this.app.get('/admin', adminController.getAllClients);
+    this.app.post('/admin', adminController.createClient);
   }
 
   private config():void {
