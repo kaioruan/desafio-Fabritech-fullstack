@@ -21,7 +21,7 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.post('/login', loginValidation.Validate, userController.login);
     this.app.post('/register', registerValidation.ValidateUser, userController.Register);
-    this.app.post('/validate', userController.validate);
+    this.app.get('/login/validate', userController.validate);
     this.app.get('/admin', adminController.getAllClients);
     this.app.post('/admin', registerValidation.ValidateClient, adminController.createClient);
   }
