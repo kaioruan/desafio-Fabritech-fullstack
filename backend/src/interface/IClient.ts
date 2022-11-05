@@ -1,5 +1,5 @@
 interface IClient {
-  id: number;
+  id?: number;
   username: string;
   email: string;
   role: string;
