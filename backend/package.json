@@ -59,6 +59,7 @@
     "jest": "27.4.3",
     "jsonwebtoken": "8.5.1",
     "mssql": "^9.0.1",
-    "sequelize": "6.9.0"
+    "sequelize": "6.9.0",
+    "tedious": "^15.1.0"
   }
 }
