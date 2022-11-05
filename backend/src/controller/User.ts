@@ -15,11 +15,13 @@ class UserController {
   public validate = async (req: Request, res: Response): Promise<Response> => {
     const { authorization } = req.headers;
     const result = await this.userService.validate(authorization as string);
+    if (!result) {
+      return res.status(401).json({ message: 'Incorrect email or password' });
+    }
     return res.status(200).json({ role: result });
   };
 
   public Register = async (req: Request, res: Response): Promise<Response> => {
-    // const { email, password } = req.body;
     const result = await this.userService.Register(req.body);
     return res.status(200).json(result);
   };
