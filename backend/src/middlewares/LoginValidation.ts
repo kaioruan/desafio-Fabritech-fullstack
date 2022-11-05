@@ -3,7 +3,7 @@ import UserModel from '../database/models/UserModel';
 
 class LoginValidation {
   public model = UserModel;
-  public loginV = async (req: Request, res: Response, next: NextFunction) => {
+  public Validate = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
     if (!email) {
