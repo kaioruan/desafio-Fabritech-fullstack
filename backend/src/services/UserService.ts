@@ -39,6 +39,18 @@ class LoginService {
     }
     return null as unknown as IRole;
   };
+
+  public Register = async (user: IUser): Promise<IUser> => {
+    const { email } = user;
+    const userExists = await this.model.findOne({ where: { email }, raw: true });
+    if (userExists) {
+      throw new Error('User already exists');
+    }
+    const password = bcrypt.hashSync(user.password, 10);
+    const newUser = await this.model.create({ ...user, password });
+    const { id, username, role } = newUser;
+    return { id, username, role, email, token: newUser.password } as unknown as IUser;
+  };
 }
 
 export default LoginService;
