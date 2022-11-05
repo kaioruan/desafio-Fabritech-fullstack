@@ -8,6 +8,10 @@ const config: Options = {
   database: 'Desafio Fabritech',
   port: Number(process.env.DB_PORT) || 3004,
   dialect: 'mssql',
+  dialectOptions: {
+    trustServerCertificate: true,
+  },
+  logging: false,
 }
 
 module.exports = config;
