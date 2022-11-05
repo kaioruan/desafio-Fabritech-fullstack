@@ -8,6 +8,12 @@ class AdminService {
     const result = await this.model.findAll({ raw: true });
     return result as unknown as IClient[];
   };
+
+  public createClient = async (client: IClient): Promise<IClient> => {
+    const result = await this.model.create(client);
+
+    return result as unknown as IClient;
+  };
 }
 
 export default AdminService;
