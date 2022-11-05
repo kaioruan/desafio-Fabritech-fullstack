@@ -15,6 +15,13 @@ module.exports = {
         password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO', 
           // senha: secret_user
       },
+      // {
+      //   username: "Kaio Oliveira",
+      //   role: "user",
+      //   email: "kaio@user.com",
+      //   password: "$2a$10$Vr2tX37HOrsYadXPrJC/1evCJQ9c5zRmUsIZt5S5.NxROwdBB9T.S",
+      //   //senha 12345678
+      // },
     ], {});
   },
 
