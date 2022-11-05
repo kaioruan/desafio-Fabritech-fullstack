@@ -7,7 +7,7 @@ class CLient extends Model {
   email!: string;
   password!: string;
   role!: string;
-  addres!: string;
+  address!: string;
   relationship!: string;
 }
 
@@ -25,10 +25,6 @@ CLient.init({
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
   },
   role: {
     type: DataTypes.STRING,
