@@ -1,17 +1,13 @@
 <template>
   <div>
-    <HeaderPage />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import "./styles/global.css";
-import HeaderPage from "./components/HeaderPage.vue";
 
 export default {
   name: "App",
-  components: {
-    HeaderPage,
-  },
 };
 </script>
