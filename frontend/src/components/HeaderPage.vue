@@ -1,6 +1,7 @@
 <template>
   <header>
     <nav>
+      <p>Logo</p>
       <a href="/" alt="logout"> Sair </a>
     </nav>
   </header>
@@ -21,9 +22,13 @@ header {
 
 nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
+}
+p {
+  color: white;
+  font-size: 1.5rem;
 }
 a {
   color: white;
