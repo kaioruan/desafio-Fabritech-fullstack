@@ -28,6 +28,11 @@
           Logar
         </button>
       </div>
+      <div class="col-12 form-group text-center">
+        <button class="btn btn-vue btn-lg col-4">
+          <a href="/register">Cadastre-se</a>
+        </button>
+      </div>
     </div>
   </form>
 </template>
@@ -62,6 +67,7 @@ export default {
           email: this.email,
           password: this.password,
         });
+        console.log(response);
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
           this.$router.push("/admin");
