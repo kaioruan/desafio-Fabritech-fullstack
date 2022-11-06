@@ -1,17 +1,18 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import Address from './AddressModel';
 
-class CLient extends Model {
+class Client extends Model {
   id!: number;
   username!: string;
   email!: string;
   password!: string;
   role!: string;
-  address!: string;
+  addressId!: number;
   relationship!: string;
 }
 
-CLient.init({
+Client.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -30,9 +31,15 @@ CLient.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  addressId: {
+    type: DataTypes.INTEGER,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    field: 'address_id',
+    references: {
+      model: 'address',
+      key: 'id',
+    },
   },
   relationship: {
     type: DataTypes.STRING,
@@ -45,4 +52,7 @@ CLient.init({
   timestamps: false,
 });
 
-export default CLient;
+Client.belongsTo(Address, { foreignKey: 'address_id', as: 'address' });
+Address.hasMany(Client, { foreignKey: 'id', as: 'clients' });
+
+export default Client;

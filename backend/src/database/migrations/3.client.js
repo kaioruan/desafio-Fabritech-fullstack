@@ -21,13 +21,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       relationship: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      address_id: {
+        type: Sequelize.INTEGER,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false,
+        ForeignKey: true,
+        references: {
+          model: 'address',
+          key: 'id'
+        }
       },
     })
   },
