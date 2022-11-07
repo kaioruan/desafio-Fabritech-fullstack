@@ -16,6 +16,10 @@ class AdminService {
   public createClient = async (client: IClientAddress): Promise<IClientAddress> => {
     const { email, username, address, role, relationship } = client;
     const { cep, street, country, district, city, state } = address;
+    const searchUser = await this.model.findOne({ where: { email }, raw: true });
+    if (searchUser) {
+      throw new Error('this email is already registered');
+    }
     const userAddress = { cep, street, country, district, city, state };
     const transaction = await sequelize.transaction(async (t) => {
       const result = await this.modelAddress.create({ ...userAddress }, { transaction: t });
@@ -24,7 +28,6 @@ class AdminService {
       });
       return resultClient;
     });
-
     return transaction as unknown as IClientAddress;
   };
 }

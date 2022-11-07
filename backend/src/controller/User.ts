@@ -23,7 +23,7 @@ class UserController {
 
   public Register = async (req: Request, res: Response): Promise<Response> => {
     const result = await this.userService.Register(req.body);
-    return res.status(200).json(result);
+    return res.status(201).json(result);
   };
 }
 
