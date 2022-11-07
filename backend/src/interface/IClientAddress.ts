@@ -4,6 +4,7 @@ interface IClientAddress {
   email: string;
   role: string;
   relationship: string;
+  addressId?: string;
   address: {
     id?: number;
     cep: string;
