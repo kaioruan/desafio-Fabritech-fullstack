@@ -3,7 +3,7 @@ interface IClient {
   username: string;
   email: string;
   role: string;
-  address: string;
+  addressId: number;
   relationship: string;
 }
 export default IClient;
