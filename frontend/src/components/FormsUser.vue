@@ -42,6 +42,46 @@
           class="form-control form-control-lg"
           @blur="validateCep"
         />
+        <input
+          type="text"
+          required
+          v-model.trim="street"
+          placeholder="Rua"
+          class="form-control form-control-lg"
+          @blur="validateStreet"
+        />
+        <input
+          type="text"
+          required
+          v-model.trim="district"
+          placeholder="Bairro"
+          class="form-control form-control-lg"
+          @blur="validateDistrict"
+        />
+        <input
+          type="text"
+          required
+          v-model.trim="city"
+          placeholder="Cidade"
+          class="form-control form-control-lg"
+          @blur="validateCity"
+        />
+        <input
+          type="text"
+          required
+          v-model.trim="state"
+          placeholder="Estado"
+          class="form-control form-control-lg"
+          @blur="validateState"
+        />
+        <input
+          type="text"
+          required
+          v-model.trim="country"
+          placeholder="País"
+          class="form-control form-control-lg"
+          @blur="validateCountry"
+        />
       </div>
       <div class="col-12 form-group text-center">
         <button
@@ -65,6 +105,11 @@ export default {
       role: "client",
       relationship: "",
       cep: "",
+      street: "",
+      district: "",
+      city: "",
+      state: "",
+      country: "",
     };
   },
   created() {
@@ -79,7 +124,11 @@ export default {
       const result = await axios.get(
         `http://viacep.com.br/ws/${this.cep}/json/`
       );
-      console.log(result.data);
+      this.street = result.data.logradouro;
+      this.district = result.data.bairro;
+      this.city = result.data.localidade;
+      this.state = result.data.uf;
+      this.country = "Brasil";
     },
     validateEmail: function () {
       const re = /\S+@\S+\.\S+/;
@@ -100,7 +149,37 @@ export default {
         alert("Parentesco inválido");
       }
     },
-    async someAction(e) {
+    validateStreet: function () {
+      if (this.street.length < 3) {
+        this.street = "";
+        alert("Rua inválida");
+      }
+    },
+    validateDistrict: function () {
+      if (this.district.length < 3) {
+        this.district = "";
+        alert("Bairro inválido");
+      }
+    },
+    validateCity: function () {
+      if (this.city.length < 3) {
+        this.city = "";
+        alert("Cidade inválida");
+      }
+    },
+    validateState: function () {
+      if (this.state.length < 2) {
+        this.state = "";
+        alert("Estado inválido");
+      }
+    },
+    validateCountry: function () {
+      if (this.country.length < 3) {
+        this.country = "";
+        alert("País inválido");
+      }
+    },
+    async InsertClient(e) {
       e.preventDefault();
       try {
         const response = await axios.post("http://localhost:3001/admin", {
@@ -108,7 +187,24 @@ export default {
           username: this.username,
           role: this.role,
           relationship: this.relationship,
+          address: {
+            cep: this.cep,
+            street: this.street,
+            district: this.district,
+            city: this.city,
+            state: this.state,
+            country: this.country,
+          },
         });
+        this.email = "";
+        this.username = "";
+        this.role = "client";
+        this.relationship = "";
+        this.cep = "";
+        this.street = "";
+        this.district = "";
+        this.city = "";
+        this.state = "";
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
           this.$router.push("/admin");
