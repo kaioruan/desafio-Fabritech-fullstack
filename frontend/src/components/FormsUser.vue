@@ -80,6 +80,29 @@
       </div>
     </div>
   </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Parentesco</th>
+        <th>Função</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="client in clients" :key="client.id">
+        <td>{{ client.username }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.relationship }}</td>
+        <td>
+          <button v-on:click="UpdateClient(client)">Editar</button>
+        </td>
+        <td>
+          <button v-on:click="DeleteClient(client.id)">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 <script>
 import axios from "axios";
@@ -97,12 +120,25 @@ export default {
       city: "",
       state: "",
       country: "",
+      clients: [],
     };
   },
-  created() {
-    console.log("Component created.");
+  async created() {
+    const response = await axios.get("http://localhost:3001/admin");
+    this.clients = response.data;
   },
   methods: {
+    UpdateClient: function (client) {
+      const proxy1 = new Proxy(client, {});
+      const result = JSON.parse(JSON.stringify(proxy1));
+      this.username = result.username;
+      this.email = result.email;
+      this.relationship = result.relationship;
+    },
+    DeleteClient: async function (id) {
+      await axios.delete(`http://localhost:3001/admin/${id}`);
+      this.clients = this.clients.filter((i) => i.id !== id);
+    },
     validateCep: async function () {
       const re = /\d{5}\d{3}/;
       if (!re.test(this.cep)) {
@@ -111,6 +147,9 @@ export default {
       const result = await axios.get(
         `http://viacep.com.br/ws/${this.cep}/json/`
       );
+      if (!result.data.logradouro) {
+        alert("Dados Inválidos ou Cliente já cadastrado");
+      }
       this.street = result.data.logradouro;
       this.district = result.data.bairro;
       this.city = result.data.localidade;
@@ -169,32 +208,57 @@ export default {
     async InsertClient(e) {
       e.preventDefault();
       try {
-        const response = await axios.post("http://localhost:3001/admin", {
-          email: this.email,
-          username: this.username,
-          role: this.role,
-          relationship: this.relationship,
-          address: {
-            cep: this.cep,
-            street: this.street,
-            district: this.district,
-            city: this.city,
-            state: this.state,
-            country: this.country,
-          },
-        });
-        this.email = "";
-        this.username = "";
-        this.role = "client";
-        this.relationship = "";
-        this.cep = "";
-        this.street = "";
-        this.district = "";
-        this.city = "";
-        this.state = "";
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token);
-          this.$router.push("/admin");
+        const isUpdated = this.clients.find((i) => i.email === this.email);
+        if (isUpdated) {
+          const client = {
+            email: this.email,
+            username: this.username,
+            role: this.role,
+            relationship: this.relationship,
+            addressId: isUpdated.addressId,
+            address: {
+              cep: this.cep,
+              street: this.street,
+              district: this.district,
+              city: this.city,
+              state: this.state,
+              country: this.country,
+            },
+          };
+          await axios.put(`http://localhost:3001/admin/1`, client);
+          const test = this.clients.filter((i) => i.id !== isUpdated.id);
+          test.push(client);
+          this.clients = test;
+        } else {
+          const response = await axios.post("http://localhost:3001/admin", {
+            email: this.email,
+            username: this.username,
+            role: this.role,
+            relationship: this.relationship,
+            address: {
+              cep: this.cep,
+              street: this.street,
+              district: this.district,
+              city: this.city,
+              state: this.state,
+              country: this.country,
+            },
+          });
+          this.email = "";
+          this.username = "";
+          this.role = "client";
+          this.relationship = "";
+          this.cep = "";
+          this.street = "";
+          this.district = "";
+          this.city = "";
+          this.state = "";
+          const updateClients = await axios.get("http://localhost:3001/admin");
+          this.clients = updateClients.data;
+          if (response.data.token) {
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            this.$router.push("/admin");
+          }
         }
       } catch (error) {
         console.log(error);
