@@ -40,6 +40,19 @@
 import axios from "axios";
 export default {
   name: "LoginPage",
+  created() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const verify = axios.get("http://localhost:3001/login/validate", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      if (verify) {
+        this.$router.push("/admin");
+      }
+    }
+  },
   data: function () {
     return {
       email: "",
