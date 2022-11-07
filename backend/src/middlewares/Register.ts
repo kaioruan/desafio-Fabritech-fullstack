@@ -21,6 +21,14 @@ class RegisterValidation {
     next();
   };
 
+  public AddressValidate = async (req: Request, res: Response, next: NextFunction) => {
+    const { cep, street, country, district, city, state } = req.body.address;
+    if (!cep || !street || !country || !district || !city || !state) {
+      return res.status(400).json({ message: 'All fields must be filled!' });
+    }
+    next();
+  };
+
   public ValidateUser = async (req: Request, res: Response, next: NextFunction) => {
     const { email, username, password, role } = req.body;
     const EMAIL_VALIDATION_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
