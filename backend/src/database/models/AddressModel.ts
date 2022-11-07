@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
-// import Client from './ClientModel';
 
 class Address extends Model {
   id!: number;
@@ -48,6 +47,7 @@ Address.init({
   modelName: 'address',
   underscored: true,
   timestamps: false,
+  tableName: 'address',
 });
-// Client.belongsTo(Address, { foreignKey: 'address_id', as: 'clients' });
+
 export default Address;

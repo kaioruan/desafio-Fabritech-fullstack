@@ -23,7 +23,12 @@ class App {
     this.app.post('/register', registerValidation.ValidateUser, userController.Register);
     this.app.get('/login/validate', userController.validate);
     this.app.get('/admin', adminController.getAllClients);
-    this.app.post('/admin', registerValidation.ValidateClient, adminController.createClient);
+    this.app.post(
+      '/admin',
+      registerValidation.ValidateClient,
+      registerValidation.AddressValidate,
+      adminController.createClient,
+    );
   }
 
   private config():void {
