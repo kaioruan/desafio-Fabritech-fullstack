@@ -18,6 +18,19 @@ class AdminController {
     const result = await this.adminService.createClient(req.body);
     return res.status(201).json(result);
   };
+
+  public deleteClient = async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    await this.adminService.deleteClient(id);
+    return res.status(200).send();
+  };
+
+  public updateClient = async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    const result = await this.adminService.updateClient(id, req.body);
+    console.log(result);
+    return res.status(200).json(result);
+  };
 }
 
 export default AdminController;
