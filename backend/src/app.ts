@@ -29,6 +29,8 @@ class App {
       registerValidation.AddressValidate,
       adminController.createClient,
     );
+    this.app.delete('/admin/:id', adminController.deleteClient);
+    this.app.put('/admin/:id', adminController.updateClient);
   }
 
   private config():void {
