@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from "../views/LoginPage.vue";
 import RegisterPage from "../views/RegisterPage.vue";
+import FormsUser from "../components/FormsUser.vue";
 
 const routes = [
   {
@@ -17,11 +18,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: RegisterPage,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: () =>
-    //   import(/* webpackChunkName: "about" */ "../views/LoginPage.vue"),
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: FormsUser,
   },
 ];
 

@@ -67,7 +67,6 @@ export default {
           email: this.email,
           password: this.password,
         });
-        console.log(response);
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
           this.$router.push("/admin");
