@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <p>Logo</p>
+      <p>Gerenciamento de Clientes</p>
       <a href="/" alt="logout"> Sair </a>
     </nav>
   </header>
@@ -25,6 +25,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 p {
   color: white;

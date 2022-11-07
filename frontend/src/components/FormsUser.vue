@@ -7,7 +7,6 @@
           required
           v-model.trim="username"
           placeholder="Nome"
-          class="form-control form-control-lg"
           @blur="validateUsername"
         />
       </div>
@@ -17,7 +16,6 @@
           required
           v-model.trim="email"
           placeholder="Email"
-          class="form-control form-control-lg"
           @blur="validateEmail"
         />
       </div>
@@ -39,7 +37,6 @@
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
           v-model.trim="cep"
           placeholder="CEP"
-          class="form-control form-control-lg"
           @blur="validateCep"
         />
         <input
@@ -47,7 +44,6 @@
           required
           v-model.trim="street"
           placeholder="Rua"
-          class="form-control form-control-lg"
           @blur="validateStreet"
         />
         <input
@@ -55,7 +51,6 @@
           required
           v-model.trim="district"
           placeholder="Bairro"
-          class="form-control form-control-lg"
           @blur="validateDistrict"
         />
         <input
@@ -63,7 +58,6 @@
           required
           v-model.trim="city"
           placeholder="Cidade"
-          class="form-control form-control-lg"
           @blur="validateCity"
         />
         <input
@@ -71,7 +65,6 @@
           required
           v-model.trim="state"
           placeholder="Estado"
-          class="form-control form-control-lg"
           @blur="validateState"
         />
         <input
@@ -79,17 +72,11 @@
           required
           v-model.trim="country"
           placeholder="País"
-          class="form-control form-control-lg"
           @blur="validateCountry"
         />
       </div>
-      <div class="col-12 form-group text-center">
-        <button
-          class="btn btn-vue btn-lg col-4"
-          v-on:click="InsertClient($event)"
-        >
-          Inserir Cliente
-        </button>
+      <div>
+        <button v-on:click="InsertClient($event)">Inserir Cliente</button>
       </div>
     </div>
   </form>

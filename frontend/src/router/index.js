@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from "../views/LoginPage.vue";
 import RegisterPage from "../views/RegisterPage.vue";
-import FormsUser from "../components/FormsUser.vue";
+import AdminPage from "../views/AdminPage.vue";
 
 const routes = [
   {
@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: FormsUser,
+    component: AdminPage,
   },
 ];
 
