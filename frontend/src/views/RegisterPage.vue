@@ -32,7 +32,11 @@
         />
       </div>
       <div>
-        <button class="Login_btn" v-on:click="someAction($event)">
+        <button
+          class="Login_btn"
+          v-on:click="someAction($event)"
+          :disabled="isDisabled"
+        >
           Registrar
         </button>
       </div>
@@ -50,6 +54,11 @@ export default {
       password: "",
       role: "user",
     };
+  },
+  computed: {
+    isDisabled() {
+      return this.email === "" || this.password === "" || this.username === "";
+    },
   },
   methods: {
     validateEmail: function () {
