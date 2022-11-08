@@ -15,6 +15,7 @@
           <input
             type="email"
             required
+            :disabled="isEmailDisabled"
             v-model.trim="email"
             placeholder="Email"
             @blur="validateEmail"
@@ -78,7 +79,9 @@
         />
       </div>
       <div class="input">
-        <button v-on:click="InsertClient($event)">Inserir Cliente</button>
+        <button v-on:click="InsertClient($event)" :disabled="isDisabled">
+          Inserir Cliente
+        </button>
       </div>
     </div>
   </form>
@@ -124,7 +127,26 @@ export default {
       state: "",
       country: "",
       clients: [],
+      emailDisabled: false,
     };
+  },
+  computed: {
+    isDisabled() {
+      return (
+        this.email === "" ||
+        this.username === "" ||
+        this.relationship === "" ||
+        this.cep === "" ||
+        this.street === "" ||
+        this.district === "" ||
+        this.city === "" ||
+        this.state === "" ||
+        this.country === ""
+      );
+    },
+    isEmailDisabled() {
+      return this.emailDisabled;
+    },
   },
   async created() {
     const response = await axios.get("http://localhost:3001/admin");
@@ -137,6 +159,7 @@ export default {
       this.username = result.username;
       this.email = result.email;
       this.relationship = result.relationship;
+      this.emailDisabled = true;
     },
     DeleteClient: async function (id) {
       await axios.delete(`http://localhost:3001/admin/${id}`);
@@ -212,6 +235,7 @@ export default {
       e.preventDefault();
       try {
         const isUpdated = this.clients.find((i) => i.email === this.email);
+        console.log(isUpdated);
         if (isUpdated) {
           const client = {
             email: this.email,
@@ -232,6 +256,7 @@ export default {
           const test = this.clients.filter((i) => i.id !== isUpdated.id);
           test.push(client);
           this.clients = test;
+          this.emailDisabled = false;
         } else {
           const response = await axios.post("http://localhost:3001/admin", {
             email: this.email,
