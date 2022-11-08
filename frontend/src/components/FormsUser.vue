@@ -88,6 +88,8 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Parentesco</th>
+        <th>Editar</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody>
