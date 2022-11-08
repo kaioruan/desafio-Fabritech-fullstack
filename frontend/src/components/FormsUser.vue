@@ -1,33 +1,35 @@
 <template>
   <form>
-    <div>
-      <div>
-        <input
-          type="text"
-          required
-          v-model.trim="username"
-          placeholder="Nome"
-          @blur="validateUsername"
-        />
-      </div>
-      <div>
-        <input
-          type="email"
-          required
-          v-model.trim="email"
-          placeholder="Email"
-          @blur="validateEmail"
-        />
-      </div>
-      <div>
-        <select v-model.trim="relationship" @blur="validateRelationship">
-          <option value="">Parentesco</option>
-          <option value="Pai/Mãe">Pai/Mãe</option>
-          <option value="Irmão/Irmã">Irmão/Irmã</option>
-          <option value="Filho/Filha">Filho/Filha</option>
-          <option value="cônjuge">cônjuge</option>
-          <option value="Neto/Neta">Neto/Neta</option>
-        </select>
+    <div class="input-container">
+      <div class="input">
+        <div>
+          <input
+            type="text"
+            required
+            v-model.trim="username"
+            placeholder="Nome"
+            @blur="validateUsername"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            required
+            v-model.trim="email"
+            placeholder="Email"
+            @blur="validateEmail"
+          />
+        </div>
+        <div>
+          <select v-model.trim="relationship" @blur="validateRelationship">
+            <option value="">Parentesco</option>
+            <option value="Pai/Mãe">Pai/Mãe</option>
+            <option value="Irmão/Irmã">Irmão/Irmã</option>
+            <option value="Filho/Filha">Filho/Filha</option>
+            <option value="cônjuge">cônjuge</option>
+            <option value="Neto/Neta">Neto/Neta</option>
+          </select>
+        </div>
       </div>
       <div>
         <input
@@ -75,7 +77,7 @@
           @blur="validateCountry"
         />
       </div>
-      <div>
+      <div class="input">
         <button v-on:click="InsertClient($event)">Inserir Cliente</button>
       </div>
     </div>
@@ -267,3 +269,90 @@ export default {
   },
 };
 </script>
+<style scoped>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid #282c34;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+th {
+  border: 1px solid #282c34;
+  text-align: left;
+  padding: 8px;
+}
+input {
+  width: 50%;
+  height: 10px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 50%;
+  background-color: #4caf50;
+  color: white;
+  padding: 4px 4px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+select {
+  width: 230px;
+  height: 30px;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(120, 120, 120);
+}
+
+select:focus {
+  background-color: #ddd;
+  outline: none;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  heigth: 10%;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.input input {
+  width: 100%;
+}
+
+.input input:focus {
+  outline: none;
+}
+</style>
