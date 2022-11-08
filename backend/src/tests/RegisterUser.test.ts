@@ -41,11 +41,11 @@ describe('Rota Register', () => {
     after(() => {
       (User.create as sinon.SinonStub).restore();
     })
-    it('Retorna um Token JWT com status 200', async () => {
+    it('Retorna status 201 ao conseguir registrar', async () => {
       const response = await chai.request(app)
         .post('/register')
         .send(UserRegister);
-      expect(response.status).to.be.equal(200);
+      expect(response.status).to.be.equal(201);
     });
   })
   describe('Quando o email é invalido', () => {  
@@ -57,8 +57,7 @@ describe('Rota Register', () => {
     after(() => {
       (User.findOne as sinon.SinonStub ).restore();
     })
-
-    it('Retorna uma mensagem de erro com status 401', async () => {
+    it('Retorna uma mensagem de erro com status 400', async () => {
       const response = await chai.request(app)
         .post('/register')
         .send(RegisterInvalid);
