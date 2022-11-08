@@ -1,40 +1,39 @@
 <template>
-  <form id="signup-form">
-    <div class="row">
-      <div class="col-12 form-group">
-        <input
-          type="email"
-          required
-          v-model.trim="email"
-          placeholder="Email"
-          class="form-control form-control-lg"
-          @blur="validateEmail"
-        />
+  <div class="Login_container">
+    <form class="Form_container">
+      <div class="form">
+        <div class="col-12 form-group">
+          <input
+            type="email"
+            required
+            v-model.trim="email"
+            placeholder="Email"
+            class="input"
+            @blur="validateEmail"
+          />
+        </div>
+        <div class="col-12 form-group">
+          <input
+            type="password"
+            v-model.trim="password"
+            placeholder="Password"
+            required
+            class="input"
+          />
+        </div>
+        <div>
+          <button class="Login_btn" v-on:click="someAction($event)">
+            Logar
+          </button>
+        </div>
+        <div>
+          <button class="Login_btn">
+            <a href="/register">Cadastre-se</a>
+          </button>
+        </div>
       </div>
-      <div class="col-12 form-group">
-        <input
-          type="password"
-          v-model.trim="password"
-          placeholder="Password"
-          required
-          class="form-control form-control-lg"
-        />
-      </div>
-      <div class="col-12 form-group text-center">
-        <button
-          class="btn btn-vue btn-lg col-4"
-          v-on:click="someAction($event)"
-        >
-          Logar
-        </button>
-      </div>
-      <div class="col-12 form-group text-center">
-        <button class="btn btn-vue btn-lg col-4">
-          <a href="/register">Cadastre-se</a>
-        </button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 <script>
 import axios from "axios";
@@ -92,3 +91,66 @@ export default {
   },
 };
 </script>
+<style scoped>
+.Login_container {
+  align-items: center;
+  background-color: #282c34;
+  display: flex;
+  font-size: 1.1rem;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.Form_container {
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 15px;
+  height: 200px;
+  width: 400px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.Login_btn {
+  background-color: #285467;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  transition: 0.2s;
+  width: 100%;
+}
+.Login_btn:disabled {
+  background-color: #282c34;
+  border: none;
+  border-radius: 5px;
+  color: #ccc;
+  pointer-events: none;
+}
+
+.Login_btn:hover {
+  transform: scale(1.05);
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+</style>

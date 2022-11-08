@@ -86,7 +86,6 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Parentesco</th>
-        <th>Função</th>
       </tr>
     </thead>
     <tbody>
