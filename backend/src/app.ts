@@ -4,13 +4,11 @@ import UserController from './controller/User';
 import LoginValidation from './middlewares/LoginValidation';
 import AdminController from './controller/Admin';
 import RegisterValidation from './middlewares/Register';
-import TokenValidation from './middlewares/TokenValidation';
 
 const userController = new UserController();
 const loginValidation = new LoginValidation();
 const adminController = new AdminController();
 const registerValidation = new RegisterValidation();
-const token = new TokenValidation();
 class App {
   public app: express.Express;
 
@@ -24,7 +22,7 @@ class App {
     this.app.post('/login', loginValidation.Validate, userController.login);
     this.app.post('/register', registerValidation.ValidateUser, userController.Register);
     this.app.get('/login/validate', userController.validate);
-    this.app.get('/admin', token.validate, adminController.getAllClients);
+    this.app.get('/admin', adminController.getAllClients);
     this.app.post(
       '/admin',
       registerValidation.ValidateClient,

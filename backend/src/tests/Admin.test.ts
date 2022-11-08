@@ -22,8 +22,6 @@ describe('Rota Admin', () => {
     it('Retorna uma lista de clientes com status 200', async () => {
       const response = await chai.request(app)
         .get('/admin')
-        .set('Authorization', token);
-
       expect(response.body).to.be.deep.equal(ClientsMock);
       expect(response.status).to.be.equal(200);
     })
@@ -38,7 +36,6 @@ describe('Rota Admin', () => {
     it('Retorna uma lista vazia com status 200', async () => {
       const response = await chai.request(app)
         .get('/admin')
-        .set('Authorization', token);
         expect(response.body).to.be.deep.equal({ message:'No clients found' });
     })
   })
@@ -52,7 +49,6 @@ describe('Rota Admin', () => {
     it('Retorna um cliente com status 201', async () => {
       const response = await chai.request(app)
         .post('/admin')
-        .set('Authorization', token)
         .send(newClient);
 
       expect(response.body).to.be.deep.equal(newClient);
@@ -69,7 +65,6 @@ describe('Rota Admin', () => {
     it('Retorna um cliente com status 200', async () => {
       const response = await chai.request(app)
         .put('/admin/1')
-        .set('Authorization', token)
         .send(newClient);
       expect(response.status).to.be.equal(200);
     })
@@ -84,7 +79,6 @@ describe('Rota Admin', () => {
     it('Retorna um cliente com status 200', async () => {
       const response = await chai.request(app)
         .delete('/admin/1')
-        .set('Authorization', token);
       expect(response.status).to.be.equal(200);
     })
   })
@@ -98,14 +92,12 @@ describe('Rota Admin', () => {
     it('Retorna status 400 ao ter dados inválidos', async () => {
       const response = await chai.request(app)
         .post('/admin')
-        .set('Authorization', token)
         .send(newClientInvalid);
       expect(response.status).to.be.equal(400);
     })
     it('Retorna status 401 ao não ter o endereço', async () => {
       const response = await chai.request(app)
         .post('/admin')
-        .set('Authorization', token)
         .send(newClientAddressInvalid);
       expect(response.status).to.be.equal(401);
     })
