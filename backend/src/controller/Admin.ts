@@ -28,7 +28,6 @@ class AdminController {
   public updateClient = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const result = await this.adminService.updateClient(id, req.body);
-    console.log(result);
     return res.status(200).json(result);
   };
 }

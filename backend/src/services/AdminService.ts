@@ -54,11 +54,10 @@ class AdminService {
     const updateClient = { email, username, role, relationship };
     const userAddress = { cep, street, country, district, city, state };
     const transaction = await sequelize.transaction(async (t) => {
-      const result = await this.modelAddress.update(
+      await this.modelAddress.update(
         { ...userAddress },
         { where: { id: addressId }, transaction: t },
       );
-      console.log(result);
       const resultClient = await this.model.update(
         { ...updateClient, id },
         { where: { addressId }, transaction: t },
