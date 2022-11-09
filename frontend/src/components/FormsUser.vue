@@ -375,6 +375,9 @@ form {
   justify-content: center;
   width: 100%;
 }
+.input :disabled {
+  background-color: #c0c0c0;
+}
 .input input {
   width: 100%;
 }
