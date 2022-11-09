@@ -1,6 +1,6 @@
 FROM node:16.14-alpine
 
-WORKDIR /backend
+WORKDIR /frontend
 
 COPY package* ./
 
@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3001
+EXPOSE 3000
 
 CMD ["npm", "start"]
