@@ -257,6 +257,7 @@ export default {
           test.push(client);
           this.clients = test;
           this.emailDisabled = false;
+          window.location.reload();
         } else {
           const response = await axios.post("http://localhost:3001/admin", {
             email: this.email,
