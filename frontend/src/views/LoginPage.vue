@@ -2,7 +2,7 @@
   <div class="Login_container">
     <form class="Form_container">
       <div class="form">
-        <div class="col-12 form-group">
+        <div>
           <input
             type="email"
             required
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import "./LoginPage.css";
 import axios from "axios";
 export default {
   name: "LoginPage",
@@ -100,66 +101,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.Login_container {
-  align-items: center;
-  background-color: #282c34;
-  display: flex;
-  font-size: 1.1rem;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.Form_container {
-  background-color: white;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 15px;
-  height: 200px;
-  width: 400px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-}
-
-.Login_btn {
-  background-color: #285467;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  padding: 10px 0;
-  transition: 0.2s;
-  width: 100%;
-}
-.Login_btn:disabled {
-  background-color: #282c34;
-  border: none;
-  border-radius: 5px;
-  color: #ccc;
-  pointer-events: none;
-}
-
-.Login_btn:hover {
-  transform: scale(1.05);
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-</style>

@@ -1,0 +1,57 @@
+.Register_container {
+  align-items: center;
+  background-color: #282c34;
+  display: flex;
+  font-size: 1.1rem;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.Form_container_Register {
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 15px;
+  height: 200px;
+  width: 400px;
+}
+
+.form_Register {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_Register {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  height: 30px;
+}
+
+.Register_btn {
+  background-color: #285467;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  transition: 0.2s;
+  width: 100%;
+}
+.Register_btn:disabled {
+  background-color: #282c34;
+  border: none;
+  border-radius: 5px;
+  color: #ccc;
+  pointer-events: none;
+}
+
+.Register_btn:hover {
+  transform: scale(1.05);
+}

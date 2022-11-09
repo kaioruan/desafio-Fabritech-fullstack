@@ -1,13 +1,13 @@
 <template>
-  <form class="Login_container">
-    <div class="Form_container">
-      <div class="form">
+  <form class="Register_container">
+    <div class="Form_container_Register">
+      <div class="form_Register">
         <input
           type="text"
           required
           v-model.trim="username"
           placeholder="username"
-          class="input"
+          class="input_Register"
           @blur="validateUsername"
         />
       </div>
@@ -17,7 +17,7 @@
           required
           v-model.trim="email"
           placeholder="Email"
-          class="input"
+          class="input_Register"
           @blur="validateEmail"
         />
       </div>
@@ -27,13 +27,13 @@
           v-model.trim="password"
           placeholder="Password"
           required
-          class="input"
+          class="input_Register"
           @blur="validatePassword"
         />
       </div>
       <div>
         <button
-          class="Login_btn"
+          class="Register_btn"
           v-on:click="someAction($event)"
           :disabled="isDisabled"
         >
@@ -44,6 +44,7 @@
   </form>
 </template>
 <script>
+import "./RegisterPage.css";
 import axios from "axios";
 export default {
   name: "RegisterPage",
@@ -103,62 +104,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.Login_container {
-  align-items: center;
-  background-color: #282c34;
-  display: flex;
-  font-size: 1.1rem;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.Form_container {
-  background-color: white;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 15px;
-  height: 200px;
-  width: 400px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-}
-
-.Login_btn {
-  background-color: #285467;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  padding: 10px 0;
-  transition: 0.2s;
-  width: 100%;
-}
-.Login_btn:disabled {
-  background-color: #282c34;
-  border: none;
-  border-radius: 5px;
-  color: #ccc;
-  pointer-events: none;
-}
-
-.Login_btn:hover {
-  transform: scale(1.05);
-}
-</style>
