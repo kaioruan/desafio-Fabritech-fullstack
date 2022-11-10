@@ -169,13 +169,14 @@ export default {
     validateCep: async function () {
       const re = /\d{5}\d{3}/;
       if (!re.test(this.cep)) {
-        alert("CEP inválido");
+        setTimeout("alert('CEP inválido');", 1000);
+        this.cep = "";
       }
       const result = await axios.get(
         `http://viacep.com.br/ws/${this.cep}/json/`
       );
       if (!result.data.logradouro) {
-        alert("Dados Inválidos ou Cliente já cadastrado");
+        setTimeout("alert('Dados Inválidos ou Cliente já cadastrado');", 1000);
       }
       this.street = result.data.logradouro;
       this.district = result.data.bairro;
@@ -186,50 +187,53 @@ export default {
     validateEmail: function () {
       const re = /\S+@\S+\.\S+/;
       if (!re.test(this.email)) {
+        setTimeout("alert('Email inválido');", 1000);
         this.email = "";
-        alert("Email inválido");
       }
     },
     validateUsername: function () {
       if (this.username.length < 6) {
+        setTimeout(
+          "alert('Nome inválido, necessário Nome e Sobrenome');",
+          1000
+        );
         this.username = "";
-        alert("Nome inválido");
       }
     },
     validateRelationship: function () {
       if (this.relationship.length < 3) {
+        setTimeout("alert('Parentesco inválido');", 1000);
         this.relationship = "";
-        alert("Parentesco inválido");
       }
     },
     validateStreet: function () {
       if (this.street.length < 3) {
+        setTimeout("alert('Rua inválida');", 1000);
         this.street = "";
-        alert("Rua inválida");
       }
     },
     validateDistrict: function () {
       if (this.district.length < 3) {
+        setTimeout("alert('Bairro inválida');", 1000);
         this.district = "";
-        alert("Bairro inválido");
       }
     },
     validateCity: function () {
       if (this.city.length < 3) {
+        setTimeout("alert('Cidade inválida');", 1000);
         this.city = "";
-        alert("Cidade inválida");
       }
     },
     validateState: function () {
       if (this.state.length < 2) {
+        setTimeout("alert('Estado inválido');", 1000);
         this.state = "";
-        alert("Estado inválido");
       }
     },
     validateCountry: function () {
       if (this.country.length < 3) {
+        setTimeout("alert('País inválido');", 1000);
         this.country = "";
-        alert("País inválido");
       }
     },
     async InsertClient(e) {
