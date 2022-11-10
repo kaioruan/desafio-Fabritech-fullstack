@@ -2,6 +2,6 @@ import { App } from './app';
 import 'dotenv/config';
 // import router from './router';
 
-const PORT = process.env.APP_PORT || 3001;
+const PORT = process.env.APP_PORT || 4001;
 // app.listen(PORT, () => console.log('ouvindo porta', PORT));
 new App().start(PORT);
