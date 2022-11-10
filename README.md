@@ -81,6 +81,7 @@ Todos endpoints abaixo devem respeitar a regra de autenticação (login). Assim 
 </details>
 <br>
 <br>
+
 ### 👨🏻‍🦱 Registro
 | Método | Funcionalidade                                                | URL                            |
 | ------ | ------------------------------------------------------------- | ------------------------------ |
