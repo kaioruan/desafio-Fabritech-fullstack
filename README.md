@@ -37,7 +37,7 @@ git clone git@github.com:kaioruan/desafio-Fabritech-fullstack.git
 ```
 ⚠ **Atenção:** ⚠
 - Todos os seguintes comandos devem ser realizados na RAIZ DO PROJETO.
-Após clonar o projeto em seu computador, para iniciá-lo é necessário instalar as dependências.
+- Após clonar o projeto em seu computador, para iniciá-lo é necessário instalar as dependências.
 ```
 npm run postinstall
 ```
