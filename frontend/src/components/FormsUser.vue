@@ -91,6 +91,7 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Parentesco</th>
+        <th>Endereço</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
@@ -100,6 +101,7 @@
         <td>{{ client.username }}</td>
         <td>{{ client.email }}</td>
         <td>{{ client.relationship }}</td>
+        <td>{{ arrayConcat(Object.values(client)) }}</td>
         <td>
           <button v-on:click="UpdateClient(client)">Editar</button>
         </td>
@@ -161,6 +163,14 @@ export default {
       this.email = result.email;
       this.relationship = result.relationship;
       this.emailDisabled = true;
+    },
+    arrayConcat: function (array) {
+      let concat = "";
+      for (let i = 7; i < array.length; i++) {
+        concat += array[i] + ", ";
+      }
+      const result = concat.slice(0, -2);
+      return result;
     },
     DeleteClient: async function (id) {
       await axios.delete(`http://localhost:3001/admin/${id}`);
