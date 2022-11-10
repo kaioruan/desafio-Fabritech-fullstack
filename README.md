@@ -57,3 +57,245 @@ Após isso, você pode acessar a aplicação através do endereço http://localh
 Para poder executar os testes, na raiz, utilize o comando o comando `npm run test` e **todos** os seus testes serão executado.
 
 ---
+
+## 📚 Documentação (endpoints)
+
+### 🔑 Login
+| Método | Funcionalidade           | URL                         |
+| ------ | ------------------------ | --------------------------- |
+| `POST` | Realiza login no backend | http://localhost:3000/login |
+
+<details>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+
+```json
+{
+  "email": "lewishamilton@gmail.com",
+  "password": "123456"
+}
+```
+
+</details>
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo1LCJkaXNwbGF5TmFtZSI6InVzdWFyaW8gZGUgdGVzdGUiLCJlbWFpbCI6InRlc3RlQGVtYWlsLmNvbSIsImltYWdlIjoibnVsbCJ9LCJpYXQiOjE2MjAyNDQxODcsImV4cCI6MTYyMDY3NjE4N30.Roc4byj6mYakYqd9LTCozU1hd9k_Vw5IWKGL4hcCVG8"
+}
+```
+
+</details>
+
+<details>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>Some required fields are missing</code> caso alguma informação esteja faltando no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>Invalid fields</code> caso alguma informação seja inválida no body da requisição.
+</details>
+<br>
+
+### 👨🏻‍🦱 Users
+| Método | Funcionalidade                             | URL                        |
+| ------ | ------------------------------------------ | -------------------------- |
+| `POST` | Adiciona um novo usuário no banco de dados | http://localhost:3000/user |
+
+<details>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+
+```json
+{
+  "displayName": "Brett Wiltshire",
+  "email": "brett@email.com",
+  "password": "123456",
+  "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
+}
+```
+
+</details>
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 201:</summary>
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo1LCJkaXNwbGF5TmFtZSI6InVzdWFyaW8gZGUgdGVzdGUiLCJlbWFpbCI6InRlc3RlQGVtYWlsLmNvbSIsImltYWdlIjoibnVsbCJ9LCJpYXQiOjE2MjAyNDQxODcsImV4cCI6MTYyMDY3NjE4N30.Roc4byj6mYakYqd9LTCozU1hd9k_Vw5IWKGL4hcCVG8"
+}
+```
+
+</details>
+
+<details>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>"displayName" length must be at least 8 characters long</code> caso o campo displayName tenha menos de 8 caracteres body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>"email" must be a valid email</code> caso o campo displayName tenha menos de 8 caracteres body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>"password" length must be at least 6 characters long</code> caso o campo password tenha menos de 6 caracteres body da requisição;<br>
+  - A rota retorna o código <code>409</code>, com a mensagem <code>User already registered</code> caso o usuário já exista no banco de dados.
+</details>
+<br>
+
+## :warning: Validando token nas requisições
+
+Todos endpoints abaixo devem respeitar a regra de autenticação (login). Assim sendo, todas as requisições abaixo devem, obrigatoriamente, ter um `token de autenticação` nos headers, no campo `authorization` (obtido após realizar o login ou cadastrar um usuário).
+
+### 👨🏻‍🦱 Login
+| Método | Funcionalidade                            | URL                        |
+| ------ | ----------------------------------------- | -------------------------- |
+| `POST`  | Valida o Usuário no Banco de dados e retorna o token de acesso. | http://localhost:3001/login |
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2ODEwNjkxMSwiZXhwIjoxNjY4MTkzMzExfQ.SPctMpf4MCWzotwvfXNnzihbfyd_ECPUv70W2F8AeOw"
+}
+```
+
+</details>
+<br>
+<br>
+### 👨🏻‍🦱 Registro
+| Método | Funcionalidade                                                | URL                            |
+| ------ | ------------------------------------------------------------- | ------------------------------ |
+| `POST`  | Valida as informações de criação, cadastra no banco de dados e retorna a criação do usuário. | http://localhost:3001/register |
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 201:</summary>
+
+```json
+{
+  "id": 1,
+  "username": "Kaio Ruan Oliveira",
+  "role": "user",
+  "email": "admiiin@admin.com",
+  "token": "$2a$10$cMLGw2Q49ROG9ywd3gReWersqSxpGDe/udJdMJPA33k4QTTguKU/q"
+}
+```
+
+</details>
+
+<details>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
+  - A mensagem <code>'User already exists'</code> caso o email já tenha cadastro no banco de dados.
+</details>
+
+<br>
+<br>
+
+| Método   | Funcionalidade                                                                  | URL                           |
+| -------- | ------------------------------------------------------------------------------- | ----------------------------- |
+| `POST` | Ao acessar a rota Login, caso o usuário tenha um token válido, será validado no banco de dados e redirecionado para página principal /admin. | http://localhost:3001/logn/validate|
+
+A rota retorna o status 401, <code>'Incorrect email or password'</code>.
+<br>
+<br>
+
+### 🗒️ ADmin
+| Método | Funcionalidade                              | URL                              |
+| ------ | ------------------------------------------- | -------------------------------- |
+| `GET`  | Retorna uma lista de todos os clientes cadastrados | http://localhost:3001/admin |
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+
+```json
+[
+  {
+    "id": 1,
+    "username": "Kaio Oliveira",
+    "email": "kaio@teste.com",
+    "role": "client",
+    "addressId": 1,
+    "relationship": "Irmão/Irmã",
+    "address.id": 1,
+    "address.cep": "49090500",
+    "address.street": "Rua da Paz",
+    "address.district": "Jardim Centenário",
+    "address.city": "Aracaju",
+    "address.state": "Sergipe",
+    "address.country": "Brasil"
+  },
+  {
+    "id": 2,
+    "username": "Jackson Santos",
+    "email": "jackson@teste.com",
+    "role": "client",
+    "addressId": 2,
+    "relationship": "Pai/Mãe",
+    "address.id": 2,
+    "address.cep": "49090701",
+    "address.street": "Rua da Gloria",
+    "address.district": "Jardim Centenário",
+    "address.city": "Aracaju",
+    "address.state": "Sergipe",
+    "address.country": "Brasil"
+  }
+]
+```
+
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade                                | URL                              |
+| ------ | --------------------------------------------- | -------------------------------- |
+| `POST` | Adiciona um novo cliente ao banco de dados, ocorrendo a validação de todas as informações. | http://localhost:3001/admin |
+
+<details>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+
+```json
+{
+  "id": 9,
+  "email": "admiiin@admuuin.com",
+  "username": "Kaio Ruan Oliveira",
+  "role": "cliente",
+  "relationship": "Pai/Mãe",
+  "addressId": 9
+}
+```
+
+</details>
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 201:</summary>
+
+```json
+{
+  "id": 3,
+  "name": "Typescript"
+}
+```
+
+</details>
+
+<details>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retornar a mensagem <code>'this email is already registered'</code> caso já tenha um cliente com este email cadastrado.
+</details>
+<br>
+
+| Método | Funcionalidade                            | URL                        |
+| ------ | ----------------------------------------- | -------------------------- |
+| `DELETE`  | Deleta o cliente do banco de dados. | http://localhost:3001/admin/:id |
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+
+
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade                               | URL                        |
+| ------ | -------------------------------------------- | -------------------------- |
+| `PUT` | Atualiza/Modifica informações sobre um cliente. | http://localhost:3001/admin/:id |
+
+<details>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+
+</details>
+
+<br>
+<br>
