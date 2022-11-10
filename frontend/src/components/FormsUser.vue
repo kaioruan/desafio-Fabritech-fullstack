@@ -7,7 +7,7 @@
             type="text"
             required
             v-model.trim="username"
-            placeholder="Nome"
+            placeholder="Nome e Sobrenome"
             @blur="validateUsername"
           />
         </div>

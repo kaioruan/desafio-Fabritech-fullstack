@@ -6,7 +6,7 @@
           type="text"
           required
           v-model.trim="username"
-          placeholder="username"
+          placeholder="Nome e Sobrenome"
           class="input_Register"
           @blur="validateUsername"
         />
