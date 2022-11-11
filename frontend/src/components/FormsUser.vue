@@ -186,6 +186,7 @@ export default {
         `http://viacep.com.br/ws/${this.cep}/json/`
       );
       if (!result.data.logradouro) {
+        this.cep = "";
         setTimeout("alert('Dados Inválidos ou Cliente já cadastrado');", 1000);
       }
       this.street = result.data.logradouro;

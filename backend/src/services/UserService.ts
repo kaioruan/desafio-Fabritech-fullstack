@@ -24,6 +24,7 @@ class LoginService {
     }
     const token = Jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: '1d',
+      algorithm: 'HS256',
     });
     return token as unknown as IToken;
   };
