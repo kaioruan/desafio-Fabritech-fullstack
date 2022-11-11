@@ -110,11 +110,14 @@ Todos endpoints abaixo devem respeitar a regra de autenticação (login). Assim 
 <br>
 <br>
 
+### 👨🏻‍🦱 Validação de Token
 | Método   | Funcionalidade                                                                  | URL                           |
 | -------- | ------------------------------------------------------------------------------- | ----------------------------- |
 | `POST` | Ao acessar a rota Login, caso o usuário tenha um token válido, será validado no banco de dados e redirecionado para página principal /admin. | http://localhost:3001/logn/validate|
-
-A rota retorna o status 401, <code>'Incorrect email or password'</code>.
+<details>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o status <code>401</code>, <code>'Incorrect email or password'</code>.
+</details>
 <br>
 <br>
 
@@ -173,13 +176,19 @@ A rota retorna o status 401, <code>'Incorrect email or password'</code>.
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
 
 ```json
-{
-  "id": 9,
-  "email": "admiiin@admuuin.com",
-  "username": "Kaio Ruan Oliveira",
-  "role": "cliente",
-  "relationship": "Pai/Mãe",
-  "addressId": 9
+{        
+  "email": "kaio@rruan.com",
+  "username": "Kaio Teste",
+  "role": "client",
+  "relationship": "Irmão/Irmã",
+  "address": {
+    "cep": "49090630",
+    "street": "Rua Jardins",
+    "district": "Jardins",
+    "city": "Aracaju",
+    "state": "SE",
+    "country": "Brasil"
+  }
 }
 ```
 
@@ -190,8 +199,12 @@ A rota retorna o status 401, <code>'Incorrect email or password'</code>.
 
 ```json
 {
-  "id": 3,
-  "name": "Typescript"
+  "id": 1,
+  "email": "kaio@rruan.com",
+  "username": "Kaio Teste",
+  "role": "client",
+  "relationship": "Irmão/Irmã",
+  "addressId": 12
 }
 ```
 
@@ -208,7 +221,7 @@ A rota retorna o status 401, <code>'Incorrect email or password'</code>.
 | `DELETE`  | Deleta o cliente do banco de dados. | http://localhost:3001/admin/:id |
 
 <details>
-  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A resposta da requisição é o status 200.</summary>
 
 
 </details>
@@ -220,7 +233,30 @@ A rota retorna o status 401, <code>'Incorrect email or password'</code>.
 | `PUT` | Atualiza/Modifica informações sobre um cliente. | http://localhost:3001/admin/:id |
 
 <details>
-  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+
+```json
+{        
+  "email": "kaio@rruan.com",
+  "username": "Kaio Teste",
+  "role": "client",
+  "relationship": "Irmão/Irmã",
+   "addressId": 1,
+  "address": {
+    "cep": "49090630",
+    "street": "Rua Jardins",
+    "district": "Jardins",
+    "city": "Aracaju",
+    "state": "SE",
+    "country": "Brasil"
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary>A requisição retorna o status 200.</summary>
 
 </details>
 
