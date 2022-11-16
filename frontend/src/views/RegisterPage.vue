@@ -58,7 +58,9 @@ export default {
   },
   computed: {
     isDisabled() {
-      return this.email === "" || this.password === "" || this.username === "";
+      return (
+        this.email === "" || this.password.length < 6 || this.username === ""
+      );
     },
   },
   methods: {

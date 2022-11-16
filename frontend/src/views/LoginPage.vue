@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     isDisabled() {
-      return this.email === "" || this.password === "";
+      return this.email === "" || this.password.length < 6;
     },
   },
   methods: {
