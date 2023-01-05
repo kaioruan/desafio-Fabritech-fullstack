@@ -3,7 +3,9 @@
 Esse projeto foi desenvolvido para um teste técnico!
 
 Aqui você vai encontrar os detalhes de como foi o desenvolvimento do projeto e quais foram os requisitos técnicos necessários para a entrega do desafio.
----
+
+# Descrição
+Aplicação Fullstack onde é possivel administrar clientes, criando, deletando e atualizando informações sobre os clientes.
 
 # Habilidades desenvolvidas
 
