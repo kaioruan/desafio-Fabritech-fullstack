@@ -26,6 +26,7 @@ Neste projeto, fui capaz de:
 
 Para iniciar o projeto, é necessário possuir o [Docker](https://docs.docker.com/engine/install/ubuntu/) instalado.
 
+
 ⚠ **Atenção:** ⚠
 - Para rodar a aplicação é necessário ter a imagem do SQL SERVER instalado, segue comando para instalação.
 - OBS: neste comando está definida a senha da imagem como `aA12345678@`, caso ja tenha o SQL SERVER, será necessário alterar a senha localmente no diretório `/backend/src/database/config/database.ts`.
