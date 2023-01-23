@@ -1,0 +1,36 @@
+version: '3'
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - 8080:8080
+    working_dir: /frontend
+    volumes:
+      - ./frontend:/frontend
+    depends_on:
+      - backend
+        # condition: service_healthy
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - MSSQL_HOST=mssql
+      - MSSQL_USER=sa
+      - MSSQL_PASSWORD=aA12345678@
+      - DB_HOST=192.168.0.7
+      - MSSQL_DATABASE=Desafio Fabritech
+    depends_on:
+      - mssql
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - SA_PASSWORD=aA12345678@
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+volumes:
+  mssql-data:

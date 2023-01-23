@@ -1,13 +1,9 @@
-FROM node:16.14-alpine
-
+FROM node:lts-alpine
+RUN npm install -g http-server
 WORKDIR /frontend
-
-COPY package* ./
-
+COPY package*.json ./
 RUN npm install
-
 COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+RUN npm run build
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
